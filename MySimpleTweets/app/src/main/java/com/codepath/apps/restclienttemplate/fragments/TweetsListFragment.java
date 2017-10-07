@@ -41,9 +41,10 @@ public abstract  class TweetsListFragment extends Fragment {
     ArrayList<Tweet> tweets;
     RecyclerView rvTweets;
     protected TwitterClient client;
+    protected Long maxID=Long.MAX_VALUE-1;
 
 
-    private EndlessRecyclerViewScrollListener scrollListener;
+    protected EndlessRecyclerViewScrollListener scrollListener;
 
 
     @Nullable
@@ -105,8 +106,11 @@ public abstract  class TweetsListFragment extends Fragment {
                 JSONObject JSonResult = response.getJSONObject(i);
                 //Tweet tweet = Tweet.fromJSON(response.getJSONObject(i));
                 Tweet tweet = Tweet.fromJSON(JSonResult);
-                if (TwitterClient.maxID > Tweet.getID(JSonResult)){
-                    TwitterClient.maxID = Tweet.getID(JSonResult);
+//                if (TwitterClient.maxID > Tweet.getID(JSonResult)){
+//                    TwitterClient.maxID = Tweet.getID(JSonResult);
+//                }
+                if (maxID > Tweet.getID(JSonResult)){
+                    maxID = Tweet.getID(JSonResult);
                 }
                 tweets.add(tweet);
                 tweetAdapter.notifyItemChanged(tweets.size() - 1);

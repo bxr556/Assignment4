@@ -3,6 +3,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
 
 public abstract class EndlessRecyclerViewScrollListener extends RecyclerView.OnScrollListener {
     // The minimum amount of items to have below your current scroll position
@@ -78,6 +79,10 @@ public abstract class EndlessRecyclerViewScrollListener extends RecyclerView.OnS
         // If it’s still loading, we check to see if the dataset count has
         // changed, if so we conclude it has finished loading and update the current page
         // number and total item count.
+
+        Log.d("DEBUG", "loading is:"+ loading);
+        Log.d("DEBUG", "totalItemCount is:"+ totalItemCount);
+        Log.d("DEBUG","previousTotalItemCount is:"+previousTotalItemCount);
         if (loading && (totalItemCount > previousTotalItemCount)) {
             loading = false;
             previousTotalItemCount = totalItemCount;

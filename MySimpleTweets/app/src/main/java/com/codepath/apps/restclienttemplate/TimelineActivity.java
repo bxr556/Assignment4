@@ -2,28 +2,41 @@ package com.codepath.apps.restclienttemplate;
 
 import android.content.Intent;
 import android.support.design.widget.TabLayout;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ProgressBar;
 
 import com.codepath.apps.restclienttemplate.fragments.TweetsListFragment;
 import com.codepath.apps.restclienttemplate.fragments.TweetsPagerAdapter;
+
+import static com.codepath.apps.restclienttemplate.R.id.miActionProgress;
 
 public class TimelineActivity extends AppCompatActivity {
 
 
 
     public static final int REQUEST_COMPOSE_CODE=20;
-
+    MenuItem miActionProgressItem;
     private ViewPager mviewPager;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.compose,menu);
         getMenuInflater().inflate(R.menu.menu_timeline,menu);
+        getMenuInflater().inflate(R.menu.activity_main,menu);
         return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+
+        miActionProgressItem = menu.findItem(miActionProgress);
+        ProgressBar v =(ProgressBar) MenuItemCompat.getActionView(miActionProgressItem);
+        return super.onPrepareOptionsMenu(menu);
     }
 
     @Override
@@ -61,5 +74,13 @@ public class TimelineActivity extends AppCompatActivity {
 
         Intent i = new Intent(this, ProfileActivity.class);
         startActivity(i);
+    }
+
+    public void showProgressBar(){
+        miActionProgressItem.setVisible(true);
+    }
+
+    public void hideProgressBar(){
+        miActionProgressItem.setVisible(false);
     }
 }

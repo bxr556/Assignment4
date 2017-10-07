@@ -31,7 +31,8 @@ public class MentionsTimelineFragment extends TweetsListFragment {
     @Override
     public void onResume() {
         super.onResume();
-        TwitterClient.maxID= Long.MAX_VALUE-1;
+        //TwitterClient.maxID= Long.MAX_VALUE-1;
+
     }
 
     protected void loadNextDataFromApi(int offset){
@@ -40,7 +41,7 @@ public class MentionsTimelineFragment extends TweetsListFragment {
 
     protected void populateTimeline(int page) {
 
-        client.getMentionsTimeline(new JsonHttpResponseHandler(){
+        client.getMentionsTimeline(maxID,new JsonHttpResponseHandler(){
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 Log.d("TwitterClient",response.toString());
