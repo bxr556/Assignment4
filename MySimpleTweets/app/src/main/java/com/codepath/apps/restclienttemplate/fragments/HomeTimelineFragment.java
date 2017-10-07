@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.codepath.apps.restclienttemplate.TwitterApp;
+import com.codepath.apps.restclienttemplate.TwitterClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
 import org.json.JSONArray;
@@ -23,6 +24,12 @@ public class HomeTimelineFragment extends TweetsListFragment {
         super.onCreate(savedInstanceState);
         client = TwitterApp.getRestClient();
         populateTimeline(0);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        TwitterClient.maxID= Long.MAX_VALUE-1;
     }
 
     protected void loadNextDataFromApi(int offset){

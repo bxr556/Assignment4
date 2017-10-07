@@ -1,6 +1,7 @@
 package com.codepath.apps.restclienttemplate;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.codepath.oauth.OAuthBaseClient;
 import com.github.scribejava.apis.FlickrApi;
@@ -51,6 +52,7 @@ public class TwitterClient extends OAuthBaseClient {
 		params.put("count", 30);
 		//params.put("since_id",1);
 		params.put("max_id",maxID);
+		Log.d("DEBUG","Maxid is: "+maxID);
 		client.get(apiUrl, params, handler);
 
 
@@ -63,6 +65,7 @@ public class TwitterClient extends OAuthBaseClient {
 		params.put("count", 30);
 		//params.put("since_id",1);
 		params.put("max_id",maxID);
+		Log.d("DEBUG","Maxid is: "+maxID);
 		client.get(apiUrl, params, handler);
 
 
