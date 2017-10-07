@@ -1,5 +1,6 @@
 package com.codepath.apps.restclienttemplate;
 
+import com.bumptech.glide.request.target.ViewTarget;
 import com.facebook.stetho.Stetho;
 import com.raizlabs.android.dbflow.config.FlowConfig;
 import com.raizlabs.android.dbflow.config.FlowLog;
@@ -23,6 +24,7 @@ public class TwitterApp extends Application {
 	@Override
 	public void onCreate() {
 		super.onCreate();
+		ViewTarget.setTagId(R.id.glide_tag);
 		Stetho.initializeWithDefaults(this);
 		FlowManager.init(new FlowConfig.Builder(this).build());
 		FlowLog.setMinimumLoggingLevel(FlowLog.Level.V);
